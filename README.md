@@ -1,16 +1,20 @@
-# shelf_comparison_app
+# My Shelf Comparison App
 
-A new Flutter project.
+This is a simple Flutter app.
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+Below are some screenshots of the app:
 
-A few resources to get you started if this is your first Flutter project:
+### Home Screen
+![Home Screen](assets/images/screen1.jpg)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Upload Reference Screen
+![Upload Reference Screen](assets/images/screen2.jpg)
+![Upload Reference Screen](assets/images/screen3.jpg)
+![Upload Reference Screen](assets/images/screen4.jpg)
+![Upload Reference Screen](assets/images/screen5.jpg)
+![Upload Reference Screen](assets/images/screen6.jpg)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Result Screen
+![Result Screen](assets/images/screen7.jpg)
