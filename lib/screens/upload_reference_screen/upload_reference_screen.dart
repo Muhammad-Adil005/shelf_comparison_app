@@ -130,69 +130,73 @@ class UploadReferenceScreen extends StatelessWidget {
         appBar: AppBar(title: const Text('Upload Reference Planogram')),
         body: BlocBuilder<UploadReferenceBloc, UploadReferenceState>(
           builder: (context, state) {
-            return Column(
-              children: [
-                ImagePickerWidget(
-                  isReferenceImage: true,
-                  onImagePicked: (image) {
-                    context
-                        .read<UploadReferenceBloc>()
-                        .add(UpdateReferenceImage(image: image!));
-                  },
-                ),
-                if (state.referenceImage != null)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.file(state.referenceImage!),
-                  ),
-                const SizedBox(height: 16),
-                ImagePickerWidget(
-                  isReferenceImage: false,
-                  onImagePicked: (image) {
-                    context
-                        .read<UploadReferenceBloc>()
-                        .add(UpdateShelfImage(image: image!));
-                  },
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: state.shelfImages.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.file(state.shelfImages[index]),
-                      );
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  ImagePickerWidget(
+                    isReferenceImage: true,
+                    onImagePicked: (image) {
+                      context
+                          .read<UploadReferenceBloc>()
+                          .add(UpdateReferenceImage(image: image!));
                     },
                   ),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    surfaceTintColor: Colors.transparent,
+                  if (state.referenceImage != null)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.file(state.referenceImage!),
+                    ),
+                  const SizedBox(height: 16),
+                  ImagePickerWidget(
+                    isReferenceImage: false,
+                    onImagePicked: (image) {
+                      context
+                          .read<UploadReferenceBloc>()
+                          .add(UpdateShelfImage(image: image!));
+                    },
                   ),
-                  onPressed: state.loading
-                      ? null
-                      : () {
-                          context
-                              .read<UploadReferenceBloc>()
-                              .add(CompareImages(context: context));
-                        },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      if (!state.loading)
-                        const Text(
-                          'Compare Images',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      if (state.loading)
-                        const CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                    ],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.67,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.shelfImages.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.file(state.shelfImages[index]),
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      surfaceTintColor: Colors.transparent,
+                    ),
+                    onPressed: state.loading
+                        ? null
+                        : () {
+                            context
+                                .read<UploadReferenceBloc>()
+                                .add(CompareImages(context: context));
+                          },
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        if (!state.loading)
+                          const Text(
+                            'Compare Images',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        if (state.loading)
+                          const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),
